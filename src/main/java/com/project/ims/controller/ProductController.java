@@ -28,6 +28,7 @@ public class ProductController {
 		return "products";
 
 		
+		
 	}
 
 	@GetMapping("/products/new")
