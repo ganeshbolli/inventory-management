@@ -1,5 +1,8 @@
 package com.project.ims.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,8 @@ import com.project.ims.service.ProductService;
 public class ProductController {
 
 	private ProductService productService;
+	
+	
 
 	public ProductController(ProductService productService) {
 		super();
@@ -27,8 +32,13 @@ public class ProductController {
 
 		return "products";
 
-		
-		
+	}
+
+	@GetMapping("/products/inventory")
+	public String returnInventory() {
+
+		return "inventory";
+
 	}
 
 	@GetMapping("/products/new")
@@ -47,8 +57,7 @@ public class ProductController {
 		return "redirect:/products";
 
 	}
-	
-	
+
 	@GetMapping("/products/edit/{id}")
 	public String editProductForm(@PathVariable Long id, Model model) {
 		model.addAttribute("product", productService.getProductById(id));
@@ -56,30 +65,29 @@ public class ProductController {
 	}
 
 	@PostMapping("/products/{id}")
-	public String updateProduct(@PathVariable Long id,
-			@ModelAttribute("student") Product product,
-			Model model) {
-		
-		// get student from database by id
+	public String updateProduct(@PathVariable Long id, @ModelAttribute("product") Product product, Model model) {
+
+		// get product from database by id
 		Product existingData = productService.getProductById(id);
 		existingData.setId(id);
 		existingData.setProductName(product.getProductName());
 		existingData.setProductPrice(product.getProductPrice());
 		existingData.setProductSerialNum(product.getProductSerialNum());
-		
+
 		// save updated product object
 		productService.updateProduct(existingData);
-		return "redirect:/products";		
+		return "redirect:/products";
 	}
-	
-	
-	//delete product data
+
+	// delete product data
 	@GetMapping("/products/{id}")
 	public String deleteProduct(@PathVariable Long id) {
-		 productService.deleteProductById(id);
-			return "redirect:/products";		
+		productService.deleteProductById(id);
+		return "redirect:/products";
 
-		
 	}
+	
+	
+	
 
 }

@@ -2,6 +2,7 @@ package com.project.ims.service.Impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.ims.entity.Product;
@@ -12,6 +13,9 @@ import com.project.ims.service.ProductService;
 public class ProductServiceImpl  implements ProductService{
 	
 	private ProductRepository productRepository;
+	
+
+
 	
 
 	public ProductServiceImpl(ProductRepository productRepository) {
@@ -51,6 +55,8 @@ public class ProductServiceImpl  implements ProductService{
 		productRepository.deleteById(id);
 		
 	}
+	
 
+	   
 
 }

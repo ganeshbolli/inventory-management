@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        /* Custom CSS styles */
+        .section {
+            height: 100px; /* Adjust the height as needed */
+            background-color: #f8f9fa; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Product Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/products}">Product Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Inventory Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Order Management</a>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+	<br>
+	<br>
+	
+
+    <!-- Sections with smooth transitions -->
+    <div id="food" class="section">
+        <a href="#grocery" class="btn btn-primary btn-lg">Go to Grocery</a>
+    </div>
+
+    <div id="grocery" class="section">
+        <a href="#cigars" class="btn btn-primary btn-lg">Go to Cigars/Cigarettes</a>
+    </div>
+
+    <div id="cigars" class="section">
+        <a href="#food" class="btn btn-primary btn-lg">Go to Food</a>
+    </div>
+
+    <!-- Bootstrap JS and jQuery for smooth scrolling -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
+		<footer class="bg-dark text-white mt-5 p-3 text-center">
+			        <p>&copy; 2024 Product Management System. All rights reserved.</p>
+			        <p>This webpage is licensed under the MYT License.</p>
+			    </footer>
+</body>
+
+
+</html>

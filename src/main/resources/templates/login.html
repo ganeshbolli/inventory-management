@@ -6,6 +6,48 @@
 	<title>
 		Register and Login
 	</title>
+	<style>
+		.highlight-button {
+			background-color: #007bff;
+			/* Blue background */
+			color: white;
+			/* White text */
+			border: none;
+			/* Remove default border */
+			padding: 10px 20px;
+			/* Add some padding */
+			cursor: pointer;
+			/* Pointer cursor on hover */
+			transition: background-color 0.3s, box-shadow 0.3s;
+			/* Smooth transition */
+		}
+
+		.highlight-button:hover {
+			background-color: #0056b3;
+			/* Darker blue on hover */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			/* Add shadow on hover */
+		}
+
+		.highlight-button:focus {
+			outline: none;
+			/* Remove outline on focus */
+			box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+			/* Blue outline on focus */
+		}
+
+		.login-box {
+			background: #f7f7f7;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.login-box h1 {
+			margin-bottom: 20px;
+		}
+		
+	</style>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -17,7 +59,7 @@
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<!-- Brand -->
-		<a class="navbar-brand" href="#">Product Management System</a>
+		<a class="navbar-brand" href="#">Point of sale Management System</a>
 
 		<!-- Toggler/collapsibe Button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -28,71 +70,83 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" th:href="@{/}">Registration and Login Module</a>
+					<a class="nav-link  text-white" th:href="@{/}">Registration and Login Module</a>
 				</li>
 
 			</ul>
 		</div>
 	</nav>
-
+	<br>
+	<br>
 
 	<div class="container">
 
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1> User Login</h1>
+				<div class="login-box">
+					<h1> Login to Portal</h1>
 
-				<form th:action="@{/login}" method="post">
+					<form th:action="@{/login}" method="post">
 
-					<!--error message-->
+						<!--error message-->
 
-					<div th:if="${param.error}">
+						<div th:if="${param.error}">
 
-						<div class="alert alert-danger">
-							Invalid Username or Password
-						</div>
-					</div>
-					<!--logout message-->
-
-					<div th:if="${param.logout}">
-
-						<div class="alert alert-info">
-							you have been logged out
-						</div>
-					</div>
-					<div class="form-group">
-
-						<label for="username"> Username : </label>
-						<input type="text" class="form-control" id="username" name="username"
-							placeholder="Enter Email ID" autofocus="autofocus">
-
-					</div>
-					<div class="form-group">
-
-						<label for="password"> Password : </label>
-						<input type="password" class="form-control" id="password" name="password"
-							placeholder="Enter Password ">
-
-					</div>
-
-					<div class="form-group">
-						<div class="row">
-
-							<div class="col-sm-6 col-sm-offset-3">
-								<input type="submit" name="login-submit" id="login-submit"
-									class="form-control btn btn primary" value="Log In" />
+							<div class="alert alert-danger">
+								Invalid Username or Password
 							</div>
 						</div>
+						<!--logout message-->
+
+						<div th:if="${param.logout}">
+
+							<div class="alert alert-info">
+								you have been logged out
+							</div>
+						</div>
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="username" name="username"
+								placeholder="User's Email Address" autofocus="autofocus">
+
+						</div>
+						<div class="form-group">
+
+							<input type="password" class="form-control" id="password" name="password"
+								placeholder="User's Password ">
+
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+
+								<div class="col-sm-6 col-sm-offset-3">
+									<input type="submit" name="login-submit" id="login-submit"
+										class="form-control btn btn primary highlight-button" value="Log In" />
+								</div>
+
+								<div class="col-sm-6 col-sm-offset-3">
+									<input type="reset" name="login-reset" id="login-reset"
+										class="form-control btn btn primary highlight-button" value="Reset" />
+								</div>
+							</div>
+						</div>
+
+
+					</form>
+					<div class="form-group">
+						<span>New User? <a href="/" th:href="@{/registration}">Register Here </a></span>
 					</div>
-
-
-				</form>
-				<div class="form-group">
-					<span>New User? <a href="/" th:href="@{/registration}">Register Here </a></span>
 				</div>
 			</div>
 		</div>
+
 	</div>
+	
+	<footer class="bg-dark text-white mt-5 p-3 text-center">
+		        <p>&copy; 2024 Product Management System. All rights reserved.</p>
+		        <p>This webpage is licensed under the MYT License.</p>
+		    </footer>
 </body>
 
 </html>
